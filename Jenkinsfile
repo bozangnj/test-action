@@ -6,6 +6,7 @@ import groovy.json.JsonSlurperClassic
 
 
 node("docker && linux") {
+  deleteDir()
   dir("${env.WORKSPACE}/pacman_config") {
     pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
           sh "git clone https://github.com/bozangnj/test-action.git"
