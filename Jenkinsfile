@@ -14,7 +14,7 @@ node("docker && linux") {
           sh "git branch"
           sh "git pull origin master"
           writeFile file: "lastDeployDateOfPacmanEa", text: "hello"
-          sh "git add lastDeployDateOfPacmanEa; git commit -m 'update the ea deploy time'; git push -u origin master --force"
+          sh "git add lastDeployDateOfPacmanEa; git commit -m \"update the ea deploy time\"; git push -u origin master --force"
         }
   }
 }
