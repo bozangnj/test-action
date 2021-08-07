@@ -11,6 +11,7 @@ node("docker && linux") {
     pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
           checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'https://github.com/bozangnj/test-action.git']]])
           sh "ls"
+          sh "git status" 
           sh "git config --global user.email 'boz@citrix.com'"
           sh "git config --global user.name 'boz'"
           sh "git branch"
