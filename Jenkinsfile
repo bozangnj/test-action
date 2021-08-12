@@ -7,7 +7,7 @@ node("docker && linux") {
   deleteDir()
   dir("${env.WORKSPACE}/pacman_config") {
     pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
-          checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'git@github.com:bozangnj/test-action.git']]])
+          checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'https://github.com/bozangnj/test-action.git']]])
           sh "ls"
           sh "git status" 
           sh "git config --global user.email 'boz@citrix.com'"
