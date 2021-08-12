@@ -19,3 +19,4 @@ node("docker && linux") {
           sh "git add lastDeployDateOfPacmanEa; git commit -m 'update the ea deploy time' --allow-empty; git push -u origin master"
         }
   }
+}
