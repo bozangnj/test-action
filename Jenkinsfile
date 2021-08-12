@@ -3,13 +3,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
-
-
 node("docker && linux") {
   deleteDir()
   dir("${env.WORKSPACE}/pacman_config") {
-   withCredentials([usernamePassword(credentialsId: "github-app-boz")]) {
-          checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'https://github.com/bozangnj/test-action.git']]])
+    pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
+          checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'git@github.com:bozangnj/test-action.git']]])
           sh "ls"
           sh "git status" 
           sh "git config --global user.email 'boz@citrix.com'"
@@ -21,4 +19,3 @@ node("docker && linux") {
           sh "git add lastDeployDateOfPacmanEa; git commit -m 'update the ea deploy time' --allow-empty; git push -u origin master"
         }
   }
-}
